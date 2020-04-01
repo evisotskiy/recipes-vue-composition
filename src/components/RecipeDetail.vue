@@ -1,46 +1,50 @@
 <template>
   <div class="detail">
     <div class="recipe" v-if="recipe">
-      <h2>{{recipe.title}}</h2>
-      <a href="#" @click.prevent="toggleVisible">{{visible ? 'Скрыть' : 'Показать'}}</a>
-      <p v-if="visible">{{recipe.description}}</p>
+      <h2>{{ recipe.title }}</h2>
+      <a href="#" @click.prevent="toggleVisible">{{ visible ? 'Скрыть' : 'Показать' }}</a>
+      <p v-if="visible">{{ recipe.description }}</p>
       <button class="btn remove" @click="$emit('remove', recipe.id)">Удалить</button>
     </div>
   </div>
 </template>
 
 <script>
-import {watch} from '@vue/composition-api'
-import { useToggle } from '../composition/toggle'
+import { watch } from '@vue/composition-api';
+import { useToggle } from '../composition/toggle';
 export default {
   props: {
-    recipe: Object
+    recipe: Object,
   },
   setup(props) {
-    const {visible, toggle: toggleVisible} = useToggle()
+    const { visible, toggle: toggleVisible } = useToggle();
 
-    watch(() => props.recipe, () => visible.value = false)
+    watch(
+      () => props.recipe,
+      () => (visible.value = false),
+    );
 
-    return {visible, toggleVisible}
+    return { visible, toggleVisible };
   },
-}
+};
 </script>
 
 <style>
-  .recipe {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-  }
+.recipe {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
 
-  .recipe p {
-    font-size: .8rem;
-    margin-bottom: .5rem;
-  }
+.recipe p {
+  font-size: 0.8rem;
+  margin-bottom: 0.5rem;
+}
 
-  .recipe a, .recipe h2 {
-    margin-bottom: .5rem;
-  }
+.recipe a,
+.recipe h2 {
+  margin-bottom: 0.5rem;
+}
 </style>
