@@ -1,5 +1,10 @@
+# folders
 node_modules
+docker
 .local
+
+# files
 .gitignore
 .prettierignore
 .env
+.env.example

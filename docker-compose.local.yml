@@ -1,0 +1,13 @@
+version: '3.7'
+
+services:
+  node:
+    build: './docker/node-with-git'
+    image: node-with-git
+    restart: on-failure
+    volumes:
+      - ./:/var/www/recipes-vue-composition
+    working_dir: /var/www/recipes-vue-composition
+    command: bash -c 'npm run serve'
+    ports:
+      - 8080:8080
